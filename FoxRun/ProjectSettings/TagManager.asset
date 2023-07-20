@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Item
+  - Enemy
+  - TapText
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 630805903
+    locked: 0
+  - name: Field
+    uniqueID: 2616548061
+    locked: 0
+  - name: DeathLine
+    uniqueID: 568698187
+    locked: 0
+  - name: Gimmic
+    uniqueID: 3813631469
+    locked: 0
+  - name: Player
+    uniqueID: 333964923
+    locked: 0
+  - name: Enemy
+    uniqueID: 3835123031
+    locked: 0
+  - name: Item
+    uniqueID: 2046010745
+    locked: 0
+  - name: Effect
+    uniqueID: 509459595
+    locked: 0
