@@ -17,7 +17,7 @@ public class Dash : MonoBehaviour
 
 	private float m_move_force;
 	private Player m_Player_cs;
-
+	
 	// Start is called before the first frame update
 	void Start()
     {
@@ -27,6 +27,9 @@ public class Dash : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "Player") {
+			//å¯â âπ
+			this.GetComponent<AudioSource>().Play();
+
 			//ÉvÉåÉCÉÑÅ[Çâ¡ë¨
 			m_move_force = m_Player_cs.GetMoveForce();
 			m_Player_cs.SetMoveForce(m_dash_move_force);
@@ -52,7 +55,7 @@ public class Dash : MonoBehaviour
 	private IEnumerator SpeedUp()
 	{
 		yield return new WaitForSeconds(m_duration);
-
 		m_Player_cs.SetMoveForce(m_move_force);
 	}
+
 }
