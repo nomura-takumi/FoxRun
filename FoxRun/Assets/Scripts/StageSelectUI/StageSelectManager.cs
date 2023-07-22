@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class StageSelectManager : MonoBehaviour {
 	[SerializeField] private float m_scroll_speed = 1.0f;
+	[SerializeField] private GameObject m_Selecting_obj;
 
 	private List<GameObject> m_aggregate_obj_list = new List<GameObject>();
-	private int m_selecting_stage_number = 0;
+	private int m_selecting_stage_element = 0;
 
 	private Image m_RightButton_obj_image;
 	private Image m_LeftButton_obj_image;
@@ -43,10 +44,10 @@ public class StageSelectManager : MonoBehaviour {
 	/// </summary>
 	private void CheckSelectingStageState()
 	{
-		if(m_selecting_stage_number == 0) {
+		if(m_selecting_stage_element == 0) {
 			m_LeftButton_obj_image.enabled = false;
 		}
-		if(m_selecting_stage_number == m_aggregate_obj_list.Count - 1) {
+		if(m_selecting_stage_element == m_aggregate_obj_list.Count - 1) {
 			m_RightButton_obj_image.enabled = false;
 		}
 	}
@@ -54,15 +55,15 @@ public class StageSelectManager : MonoBehaviour {
 	public IEnumerator Scroll(ScrollDirection direction)
 	{
 		//選択中のステージ番号
-		if(direction == ScrollDirection.RIGHT) {
-			m_selecting_stage_number++;
+		if (direction == ScrollDirection.RIGHT) {
+			m_selecting_stage_element++;
 		}
 		else {
-			m_selecting_stage_number--;
+			m_selecting_stage_element--;
 		}
 
 		//背景変更
-		GameObject.Find("BackGround").GetComponent<ChangeStageSelectBG>().ChangeBG(m_selecting_stage_number);
+		GameObject.Find("BackGround").GetComponent<ChangeStageSelectBG>().ChangeBG(m_selecting_stage_element);
 
 		//ステージ開始の無効化(Stage_xオブジェクトのボタンを無効化)
 		foreach (var element in m_aggregate_obj_list) {
@@ -72,6 +73,9 @@ public class StageSelectManager : MonoBehaviour {
 		//ボタン非表示
 		m_RightButton_obj_image.enabled = false;
 		m_LeftButton_obj_image.enabled = false;
+
+		//選択中ステージ発光オブジェクト削除
+		Destroy(GameObject.FindWithTag("Selecting"));
 
 		float move = 0.0f;
 
@@ -86,9 +90,16 @@ public class StageSelectManager : MonoBehaviour {
 				this.transform.position += new Vector3(m_scroll_speed, 0.0f, 0.0f);
 			}
 			if (move >= m_stage_distance) {
+				//座標強制
+				this.transform.localPosition = new Vector3(250 * -m_selecting_stage_element, 0.0f, 0.0f);
+
 				//ボタン再表示
 				m_RightButton_obj_image.enabled = true;
 				m_LeftButton_obj_image.enabled = true;
+
+				//選択中ステージ発光オブジェクト作成
+				var selecting_obj = Instantiate(m_Selecting_obj, this.transform.parent.position, Quaternion.identity, this.transform.parent.transform);
+				selecting_obj.transform.SetSiblingIndex(1);
 
 				CheckSelectingStageState();
 
@@ -97,36 +108,10 @@ public class StageSelectManager : MonoBehaviour {
 				foreach (var element in m_aggregate_obj_list) {
 					element.GetComponent<Button>().enabled = true;
 				}
-
+				
 				yield break;
 			}
 			yield return null;
 		}
-	}
-	/// <summary>
-	/// ボタン操作によってステージ集約オブジェクトが左に動く
-	/// </summary>
-	public IEnumerator RightScroll()
-	{
-		float move = 0.0f;
-		while (true) {
-			move += m_scroll_speed;
-
-			//集約オブジェクトを移動させる
-			this.transform.position -= new Vector3(m_scroll_speed, 0.0f, 0.0f);
-
-			if (move >= m_stage_distance) {
-				yield break;
-			}
-			yield return null;
-		}
-	}
-
-	/// <summary>
-	/// ボタン操作によってステージ集約オブジェクトが右に動く
-	/// </summary>
-	public IEnumerator LeftScroll()
-	{
-		yield return new WaitForSecondsRealtime(0.1f);
 	}
 }
