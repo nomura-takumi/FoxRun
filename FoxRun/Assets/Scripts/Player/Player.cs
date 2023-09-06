@@ -193,4 +193,6 @@ public class Player : MonoBehaviour
 	{
 		DisableInputAction();
 	}
+
+	
 }

@@ -23,6 +23,9 @@ public class FinishGame : MonoBehaviour
 	public void Finish(FinishState state)
 	{
 		m_finish_game = true;
+		
+		//サーバーへスコアを保存
+		GameObject.Find("HaveCoin").GetComponent<Coin>().Store();
 
 		//プレイヤー制御
 		GameObject.FindWithTag("Player").GetComponent<Player>().FinishGame();
