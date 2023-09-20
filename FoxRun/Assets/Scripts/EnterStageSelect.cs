@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnterStageSelect : MonoBehaviour
 {
 	[SerializeField] private GameObject m_TapStartText_obj;
+	[SerializeField] private BannerAdExample bannerAdExampleCs;
 
 	public void ToStageSelectScene()
 	{
@@ -28,5 +29,7 @@ public class EnterStageSelect : MonoBehaviour
 	{
 		yield return new WaitForSecondsRealtime(1.0f);
 		SceneManager.LoadScene(1);
+
+		bannerAdExampleCs.HideBannerAd();
 	}
 }

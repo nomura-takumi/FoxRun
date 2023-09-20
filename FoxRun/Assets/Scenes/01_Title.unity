@@ -1397,6 +1397,70 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &262110827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262110829}
+  - component: {fileID: 262110828}
+  - component: {fileID: 262110830}
+  m_Layer: 0
+  m_Name: Ads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &262110828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262110827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418b54646ae75314cbe3c56c2f3f474a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidGameId: 5413646
+  _iOSGameId: 5413647
+  _testMode: 1
+  bannerCs: {fileID: 262110830}
+--- !u!4 &262110829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262110827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 95.22495, y: 167.1122, z: -2.1965718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262110830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262110827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6052ba8b85ce52140975bb2f60242c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bannerPosition: 4
+  _androidAdUnitId: Banner_Android
+  _iOSAdUnitId: Banner_iOS
 --- !u!1 &294107011
 GameObject:
   m_ObjectHideFlags: 0
@@ -3888,6 +3952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TapStartText_obj: {fileID: 1367175686}
+  bannerAdExampleCs: {fileID: 262110830}
 --- !u!1 &798025529
 GameObject:
   m_ObjectHideFlags: 0
@@ -8835,6 +8900,7 @@ GameObject:
   - component: {fileID: 1912113901}
   - component: {fileID: 1912113903}
   - component: {fileID: 1912113902}
+  - component: {fileID: 1912113904}
   m_Layer: 0
   m_Name: SYSTEM
   m_TagString: Untagged
@@ -9041,6 +9107,19 @@ MonoBehaviour:
   - {fileID: 354822100}
   - {fileID: 781497938}
   - {fileID: 92761858}
+--- !u!114 &1912113904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912113896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ecb4797aed1ff439eff168e1469781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tapEffectObj: {fileID: 6625337682875735460, guid: 3f4c85930d3c7844ab4de6611036bd37, type: 3}
 --- !u!1 &1914357845
 GameObject:
   m_ObjectHideFlags: 0

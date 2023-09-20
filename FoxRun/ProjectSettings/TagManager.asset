@@ -9,6 +9,7 @@ TagManager:
   - TapText
   - DashEffect
   - Selecting
+  - Ranking
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - TapEffect
   - 
   - 
   - 

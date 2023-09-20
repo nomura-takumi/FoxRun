@@ -4,38 +4,78 @@ using UnityEngine;
 using NCMB;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class Ranking : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+	private List<NCMBObject> rankList	= new();
+	private string sceneName = "";
+
+	[SerializeField] private GameObject withinRankingText;
+
+	private void Awake()
+	{
+		sceneName = SceneManager.GetActiveScene().name;
+		sceneName = sceneName.Substring(3);
+	}
+
+	public void ShowRanking()
     {
-        Text text = GetComponent<Text>();
-        text.text = "";
+		Text text = GetComponent<Text>();
+		text.text = "";
 
-        NCMBQuery<NCMBObject> query = new("HighScore");
+		//スコア順に並べてランキング表示
+		NCMBQuery<NCMBObject> query = new(sceneName);
 
-        query.OrderByDescending("Score");
+		query.OrderByDescending("Score");
+		query.Limit = 5;
+		query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
+			if (e != null) {
 
-        query.Limit = 5;
+			}
+			else {
+				int rank = 1;
 
-        query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
-            if (e != null) {
+				foreach (NCMBObject obj in objList) {
+					text.text += rank++.ToString() + ":" + obj["Score"] + Environment.NewLine;
+					rankList.Add(obj);
+				}
+			}
+		});
 
-            }
-            else {
-                int rank = 1;
+		//圏内判定
+		CheckWithinRank();
+	}
 
-                foreach (NCMBObject obj in objList) {
-                    text.text += rank++.ToString() + ":" + string.Format("{0:D4}", obj["Score"]) + Environment.NewLine;
-                }
-            }
-        });
-    }
+	private void CheckWithinRank()
+	{
+		int rank = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		//最新のレコード順に並べ替えてランク内に入っているかチェック
+		NCMBQuery<NCMBObject> query = new(sceneName);
+
+		query.OrderByDescending("createDate");
+		query.Limit = 1;
+		query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
+			if (e != null) {
+
+			}
+			else {
+				var latestID    = objList[0].ObjectId;
+
+				foreach (NCMBObject obj in rankList) {
+					if (obj.ObjectId == latestID) {
+						//表示
+						var you = Instantiate(withinRankingText, Vector3.zero, Quaternion.identity, this.transform);
+
+						RectTransform rectTransform = you.transform as RectTransform;
+						rectTransform.anchoredPosition = new Vector2(65, (rank - 1) * -26); 
+						break; 
+					}
+					else { rank++; }
+				}
+			}
+		});
+	}
 }

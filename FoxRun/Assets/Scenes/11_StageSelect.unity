@@ -2376,6 +2376,7 @@ GameObject:
   - component: {fileID: 1912113898}
   - component: {fileID: 1912113900}
   - component: {fileID: 1912113902}
+  - component: {fileID: 1912113903}
   - component: {fileID: 1912113901}
   m_Layer: 0
   m_Name: SYSTEM
@@ -2574,6 +2575,19 @@ MonoBehaviour:
   - {fileID: 151585177}
   - {fileID: 585781449}
   - {fileID: 1629218195}
+--- !u!114 &1912113903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912113896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ecb4797aed1ff439eff168e1469781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tapEffectObj: {fileID: 6625337682875735460, guid: 3f4c85930d3c7844ab4de6611036bd37, type: 3}
 --- !u!1001 &816091460848768857
 PrefabInstance:
   m_ObjectHideFlags: 0

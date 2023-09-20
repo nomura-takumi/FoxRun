@@ -12,6 +12,7 @@ public class FinishGame : MonoBehaviour
 	[SerializeField] private AnimationCurve m_game_over_fade_curve;
 	[SerializeField] private GameObject m_GameOver_obj;
 
+	[SerializeField] private GameObject m_Ranking_text;
 
 	private bool m_finish_game = false;
 
@@ -20,12 +21,17 @@ public class FinishGame : MonoBehaviour
 		GAME_OVER,
 	}
 
+	private void Start()
+	{
+		m_Ranking_text.SetActive(false);
+	}
+
 	public void Finish(FinishState state)
 	{
 		m_finish_game = true;
 		
 		//サーバーへスコアを保存
-		GameObject.Find("HaveCoin").GetComponent<Coin>().Store();
+		GameObject.Find("Result").GetComponent<Result>().Store();
 
 		//プレイヤー制御
 		GameObject.FindWithTag("Player").GetComponent<Player>().FinishGame();
@@ -48,6 +54,9 @@ public class FinishGame : MonoBehaviour
 
 			//リザルト画面表示
 			Instantiate(m_Result_obj, Canvas_obj.transform.position, Quaternion.identity, Canvas_obj.transform);
+
+			//ランキング取得・表示
+			StartCoroutine(ShowRankingText());
 		}
 		else {
 			//フェードアウト
@@ -57,6 +66,16 @@ public class FinishGame : MonoBehaviour
 			//ゲームオーバー画面表示
 			Instantiate(m_GameOver_obj, Canvas_obj.transform.position, Quaternion.identity, Canvas_obj.transform);
 		}
+	}
+
+	private IEnumerator ShowRankingText()
+	{
+		yield return new WaitForSecondsRealtime(1.5f);
+		m_Ranking_text.SetActive(true);
+		m_Ranking_text.transform.SetAsLastSibling();
+
+		//ランキング表示
+		m_Ranking_text.GetComponent<Ranking>().ShowRanking();
 	}
 
 	/// <summary>

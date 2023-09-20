@@ -12,8 +12,8 @@ public class GameClear_Text : MonoBehaviour
 	private Text m_text;
 	private Color m_color;
 
-    // Start is called before the first frame update
-    IEnumerator Start()
+	// Start is called before the first frame update
+	IEnumerator Start()
     {
 		m_text = this.GetComponent<Text>();
 		m_color = m_text.color;

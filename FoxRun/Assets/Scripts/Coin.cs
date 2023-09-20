@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using NCMB;
 
 public class Coin : MonoBehaviour
 {
@@ -49,10 +48,8 @@ public class Coin : MonoBehaviour
 		}
 	}
 
-	public void Store()
+	public int GetCoin()
 	{
-		NCMBObject obj = new("HighScore");
-		obj["Score"] = m_coin;
-		obj.SaveAsync();
+		return m_coin;
 	}
 }
